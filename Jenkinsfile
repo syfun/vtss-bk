@@ -1,13 +1,13 @@
 pipeline {
   agent any
-  environment { 
-     SEELY_LOCAL_IMAGE = credentials('seely_local_image')
+  parameters {
+    string(name: 'IMAGE', defaultValue: '192.168.1.5:5000/seely:latest', description: 'docker image')
   }
   stages {
     stage('build') {
       steps {
-        sh 'echo ${SEELY_LOCAL_IMAGE}'
-        sh 'docker build -t ${SEELY_LOCAL_IMAGE} '
+        sh 'build ${params.IMAGE} ...'
+        sh 'docker build -t ${params.IMAGE} '
       }
     }
   }
