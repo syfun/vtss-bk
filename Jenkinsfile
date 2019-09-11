@@ -5,11 +5,15 @@ pipeline {
   }
   stages {
     stage('build') {
+      when { branch 'master'}
       steps {
-        echo "build ${params.IMAGE} ..."
-        echo env.BRANCH_NAME
-        sh 'printenv'
         sh "docker build -t ${params.IMAGE} ."
+      }
+    }
+    stage('push') {
+      when { branch 'master'}
+      steps {
+        sh "docker push ${params.IMAGE}"
       }
     }
   }
