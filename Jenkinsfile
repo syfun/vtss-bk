@@ -1,9 +1,13 @@
 pipeline {
   agent any
+  environment { 
+     SEELY_LOCAL_IMAGE = credentials('seely_local_image')
+  }
   stages {
-    stage('hello') {
+    stage('build') {
       steps {
-        sh 'echo "hello world"'
+        sh 'echo ${SEELY_LOCAL_IMAGE}'
+        sh 'docker build -t ${SEELY_LOCAL_IMAGE} '
       }
     }
   }
