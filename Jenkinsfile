@@ -8,6 +8,7 @@ pipeline {
       steps {
         echo "build ${params.IMAGE} ..."
         echo env.BRANCH_NAME
+        sh 'printenv'
         sh "docker build -t ${params.IMAGE} ."
       }
     }
