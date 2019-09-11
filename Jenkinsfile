@@ -6,8 +6,8 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'build ${params.IMAGE} ...'
-        sh 'docker build -t ${params.IMAGE} '
+        echo "build ${params.IMAGE} ..."
+        sh "docker build -t ${params.IMAGE} ."
       }
     }
   }
