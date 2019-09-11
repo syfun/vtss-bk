@@ -7,6 +7,7 @@ pipeline {
     stage('build') {
       steps {
         echo "build ${params.IMAGE} ..."
+        echo env.BRANCH_NAME
         sh "docker build -t ${params.IMAGE} ."
       }
     }
